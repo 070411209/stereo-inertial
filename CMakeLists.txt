@@ -59,22 +59,27 @@ if(NOT OpenCV_FOUND)
    endif()
 endif()
 
-find_package(Eigen3 3.1.0 REQUIRED)
+SET(EIGEN3_INCLUDE_DIR /usr/local/include)
+message(STATUS "-------> {EIGEN3_INCLUDE_DIR}: ${EIGEN3_INCLUDE_DIR}")
+
+# find_package(Eigen REQUIRED)
+# find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package( Glog REQUIRED )
-
 # to show 'include' in QtCreator
 FILE(GLOB_RECURSE INC_ALL "*/*.h")
 add_custom_target(headers SOURCES ${INC_ALL})
 
+
 include_directories(
+  /usr/local/include
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${PROJECT_SOURCE_DIR}/src
 ${PROJECT_SOURCE_DIR}/Thirdparty/fast/include
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/
-${EIGEN3_INCLUDE_DIR}
+# ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${GLOG_INCLUDE_DIRS}
 )
@@ -83,7 +88,7 @@ ${GLOG_INCLUDE_DIRS}
 # thirdparty
 set(THIRD_PARTY_LIBS
         ${OpenCV_LIBS}
-        ${EIGEN3_LIBS}
+        # ${EIGEN3_LIBS}
         ${Pangolin_LIBRARIES}
         ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
         ${PROJECT_SOURCE_DIR}/Thirdparty/fast/build/libfast.so
