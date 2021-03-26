@@ -50,16 +50,20 @@ ENDIF()
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
 
 # thirdparty libs 
-find_package(OpenCV 3.0 QUIET)
-if(NOT OpenCV_FOUND)
-    message(STATUS "Don't get Opencv 3.0, looking for OpenCV 2.4.")
-   find_package(OpenCV 2.4 QUIET)
-   if(NOT OpenCV_FOUND)
-      message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-   endif()
+
+find_package(OpenCV REQUIRED)
+if(OPENCV_FOUND)
+    message(STATUS "------> found opencv")
+    message(STATUS "------->opencv found: ${OpenCV_VERSION}")
+    message(STATUS "------->opencv found: ${OpenCV_LIBRARIES}")
+    message(STATUS "------->opencv inc found: ${OpenCV_LIBRARIES}")
+    include_directories(${OpenCV_INCLUDE_DIRS})
+else ()
+    message(STATUS "------>WARNING: NOTfound opencv !!!!!")
 endif()
 
-SET(EIGEN3_INCLUDE_DIR /usr/local/include)
+
+SET(EIGEN3_INCLUDE_DIR /usr/local/include/Eigen)
 message(STATUS "-------> {EIGEN3_INCLUDE_DIR}: ${EIGEN3_INCLUDE_DIR}")
 
 # find_package(Eigen REQUIRED)
@@ -79,7 +83,7 @@ ${PROJECT_SOURCE_DIR}/src
 ${PROJECT_SOURCE_DIR}/Thirdparty/fast/include
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/
-# ${EIGEN3_INCLUDE_DIR}
+${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 ${GLOG_INCLUDE_DIRS}
 )
@@ -88,7 +92,7 @@ ${GLOG_INCLUDE_DIRS}
 # thirdparty
 set(THIRD_PARTY_LIBS
         ${OpenCV_LIBS}
-        # ${EIGEN3_LIBS}
+        ${EIGEN3_LIBS}
         ${Pangolin_LIBRARIES}
         ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
         ${PROJECT_SOURCE_DIR}/Thirdparty/fast/build/libfast.so

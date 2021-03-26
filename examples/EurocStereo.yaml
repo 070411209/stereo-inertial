@@ -1,9 +1,9 @@
 %YAML:1.0
 
 # Dataset dirs
-LeftFolder: /home/gaoxiang/dataset/euroc/V1_01_easy/cam0/data
-RightFolder: /home/gaoxiang/dataset/euroc/V1_01_easy/cam1/data
-TimeFolder: /home/gaoxiang/code/ygz-stereo-release/examples/EuRoC_TimeStamps/V101.txt
+LeftFolder: /home/one/catkin_ws/bag/mav0/cam0/data
+RightFolder: /home/one/catkin_ws/bag/mav0/cam1/data
+TimeFolder: /home/one/src/ygz-stereo-inertial/examples/EuRoC_TimeStamps/MH04.txt
 
 # if running in pure stereo vision mode
 PureVisionMode: true
