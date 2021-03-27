@@ -1,13 +1,20 @@
-add_executable(EurocStereo EurocStereo.cpp)
-target_link_libraries(EurocStereo
-        ${YGZ_LIBS}
-        ${THIRD_PARTY_LIBS}
-        )
+# add_executable(EurocStereo EurocStereo.cpp)
+# target_link_libraries(EurocStereo
+#        ${YGZ_LIBS}
+#        ${THIRD_PARTY_LIBS}
+#        )
 
-add_executable(EurocStereoVIO EurocStereoVIO.cpp)
-target_link_libraries(EurocStereoVIO
+# add_executable(EurocStereoVIO EurocStereoVIO.cpp)
+# target_link_libraries(EurocStereoVIO
+#        ${YGZ_LIBS}
+#        ${THIRD_PARTY_LIBS}
+#        )
+
+add_executable(mStereo mStereo.cpp)
+target_link_libraries(mStereo
         ${YGZ_LIBS}
         ${THIRD_PARTY_LIBS}
+        ${catkin_LIBRARIES}
         )
 
 # add_executable(Kitti Kitti.cpp)

@@ -56,7 +56,7 @@ namespace ygz {
 
         int w = setting::imageWidth;
         int h = setting::imageHeight;
-        pangolin::CreateWindowAndBind("YGZ-Viewer", 1280, 720);
+        pangolin::CreateWindowAndBind("Husky-SLAM", 1280, 720);
 
         // Vector3d up(0, 0, 1);
         Vector3d up(0, -1, 0);
@@ -170,7 +170,7 @@ namespace ygz {
             // show image
             if (mCurrentFrame && mbShowCurrentImg) {
                 cv::Mat im = DrawImage();
-                imshow("image",im);
+                imshow("now",im);
                 cv::waitKey(1);
                 /*
                 texVideo.Upload(im.data, GL_BGR, GL_UNSIGNED_BYTE);

@@ -16,8 +16,9 @@ int main(int argc, char **argv) {
         LOG(INFO) << "Usage: EurocStereo path_to_config" << endl;
         return 1;
     }
+    FLAGS_logtostderr = true;
     google::InitGoogleLogging(argv[0]);
-
+    
     string configFile(argv[1]);
     cv::FileStorage fsSettings(configFile, cv::FileStorage::READ);
     if (fsSettings.isOpened() == false) {

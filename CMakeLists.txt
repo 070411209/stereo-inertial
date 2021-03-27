@@ -63,29 +63,39 @@ else ()
 endif()
 
 
-SET(EIGEN3_INCLUDE_DIR /usr/local/include/Eigen)
+# SET(EIGEN3_INCLUDE_DIR /usr/local/include/Eigen)
 message(STATUS "-------> {EIGEN3_INCLUDE_DIR}: ${EIGEN3_INCLUDE_DIR}")
 
 # find_package(Eigen REQUIRED)
-# find_package(Eigen3 3.1.0 REQUIRED)
+find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package( Glog REQUIRED )
 # to show 'include' in QtCreator
 FILE(GLOB_RECURSE INC_ALL "*/*.h")
 add_custom_target(headers SOURCES ${INC_ALL})
 
+find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS 
+                    roscpp
+                    rospy
+                    cv_bridge
+                    image_transport
+                    sensor_msgs
+                    std_msgs
+                    message_generation
+            )
 
 include_directories(
-  /usr/local/include
-${PROJECT_SOURCE_DIR}
-${PROJECT_SOURCE_DIR}/include
-${PROJECT_SOURCE_DIR}/src
-${PROJECT_SOURCE_DIR}/Thirdparty/fast/include
-${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2
-${PROJECT_SOURCE_DIR}/Thirdparty/g2o/
-${EIGEN3_INCLUDE_DIR}
-${Pangolin_INCLUDE_DIRS}
-${GLOG_INCLUDE_DIRS}
+  ${PROJECT_SOURCE_DIR}
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/src
+  ${PROJECT_SOURCE_DIR}/Thirdparty/fast/include
+  ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2
+  ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/
+  ${EIGEN3_INCLUDE_DIR}
+  ${Pangolin_INCLUDE_DIRS}
+  ${GLOG_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
 )
 
 
@@ -126,3 +136,8 @@ set(YGZ_LIBS ygz-common ygz-cv ygz-util ygz-backend ygz-system)
 
 # build examples
 add_subdirectory( examples )
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
